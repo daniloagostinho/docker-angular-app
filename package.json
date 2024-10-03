@@ -4,11 +4,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build && npm run sentry:sourcemaps",
     "watch": "ng build --watch --configuration development",
     "dockerBuild": "docker build -t docker-app .",
     "dockerRun": "docker run -p  8080:80 docker-app",
-    "test": "ng test"
+    "test": "ng test",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org eclipseworks-4w --project javascript-angular dist/ && sentry-cli sourcemaps upload --org eclipseworks-4w --project javascript-angular dist/"
   },
   "private": true,
   "dependencies": {
@@ -20,6 +21,10 @@
     "@angular/platform-browser": "^17.3.0",
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
+    "@datadog/browser-logs": "^5.28.0",
+    "@datadog/browser-rum": "^5.28.0",
+    "@sentry/angular": "^8.32.0",
+    "@sentry/cli": "^2.36.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
